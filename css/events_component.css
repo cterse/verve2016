@@ -1,0 +1,231 @@
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.wrapper {
+	margin: 0 auto 100px auto;
+	max-width: 960px;
+}
+
+.stage {
+	list-style: none;
+	padding: 0;
+}
+
+/*************************************
+Build the cube and rotate on hover
+**************************************/
+
+.cube {
+	width: 260px;
+	height: 260px;
+	margin: 30px;
+	float: left;
+	-webkit-perspective: 1000px;
+	-moz-perspective: 1000px;
+	perspective: 1000px;
+}
+
+.block {
+	width: 260px;
+	height: 260px;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-transform: translateZ(-130px);
+	-moz-transform: translateZ(-130px);
+	transform: translateZ(-130px);
+	-webkit-transition: -webkit-transform 350ms;
+	-moz-transition: -moz-transform 350ms;
+	transition: transform 350ms;
+}
+
+.block:hover {
+	-webkit-transform: rotateY(-78deg) translateZ(20px);
+	-moz-transform: rotateY(-78deg) translateZ(20px);
+	transform: rotateY(-78deg) translateZ(20px);
+}
+
+/*************************************
+Transform and style the two planes
+**************************************/
+
+.block .poster, 
+.block .info {
+	position: absolute;
+	width: 260px;
+	height: 260px;
+	background-color: #fafaa7;
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.block .poster  {
+	-webkit-transform: translateZ(130px);
+	-moz-transform: translateZ(130px);
+	transform: translateZ(130px);
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.block .info {
+	-webkit-transform: rotateY(90deg) translateZ(130px);
+	-moz-transform: rotateY(90deg) translateZ(130px);
+	transform: rotateY(90deg) translateZ(130px);
+	border: 1px solid #B8B5B5;
+	font-size: 0.75em;
+}
+
+/*************************************
+Shadow beneath the 3D object
+**************************************/
+
+.csstransforms3d .block::after {
+	content: '';
+	width: 260px;
+	height: 200px;
+	position: absolute;
+	bottom: 0;
+	box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+	-webkit-transform-origin: 100% 100%;
+	-moz-transform-origin: 100% 100%;
+	transform-origin: 100% 100%;
+	-webkit-transform: rotateX(90deg) translateY(130px);
+	-moz-transform: rotateX(90deg) translateY(130px);
+	transform: rotateX(90deg) translateY(130px);
+	-webkit-transition: box-shadow 350ms;
+	-moz-transition: box-shadow 350ms;
+	transition: box-shadow 350ms;
+}
+
+.csstransforms3d .block:hover::after {
+	box-shadow: 20px -5px 50px rgba(0,0,0,0.3);
+}
+
+/*************************************
+block information
+**************************************/
+
+.info header {
+	color: #000;
+	padding: 7px 10px;
+	font-weight: bold;
+	height: 200px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	text-shadow: 0px 1px 1px rgba(0,0,0,1);
+}
+
+.info header h1 {
+	margin: 0 0 2px;
+	font-size: 1.4em;
+}
+
+
+.info p {
+	height: 60px;
+	margin: 0 0 0;
+	font-weight: 700;
+	color: #666;
+	text-align: center;
+	border-top: 10px solid #555;
+}
+
+.info p a{
+	display:block;
+	height:50px;
+	line-height:45px;
+	text-decoration:none;
+	font-weight: bold;
+	font-size: 1.4em;
+	color:#000;
+	text-shadow: 0px 1px 1px rgba(0,0,0,1);
+}
+/*************************************
+Generate "lighting" using box shadows
+**************************************/
+
+.block .poster,
+.block .info,
+.block .info header {
+	-webkit-transition: box-shadow 30ms;
+	-moz-transition: box-shadow 30ms;
+	transition: box-shadow 30ms;
+}
+
+/*************************************
+Posters and still images
+**************************************/
+
+.cube:nth-child(1) .block .poster {
+  background-image: url(../img/pa1.png);
+}
+
+.cube:nth-child(2) .poster {
+  background-image: url(../img/la1.png);
+}
+
+.cube:nth-child(3) .poster {
+  background-image: url(../img/fa1.png);
+}
+
+.cube:nth-child(4) .poster {
+  background-image: url(../img/tec1.png);
+}
+
+.cube:nth-child(5) .poster {
+  background-image: url(../img/sp1.png);
+}
+
+.cube:nth-child(6) .poster {
+  background-image: url(../img/fun1.png);
+}
+
+.cube:nth-child(7) .poster {
+  background-image: url(../img/bus1.png);
+}
+
+.cube:nth-child(1) .info header {
+	background-image: url(../img/pa2.jpg);
+}
+
+.cube:nth-child(2) .info header {
+	background-image: url(../img/la2.jpg);
+}
+
+.cube:nth-child(3) .info header {
+	background-image: url(../img/fa2.jpg);
+}
+
+.cube:nth-child(4) .info header {
+	background-image: url(../img/tec2.jpg);
+}
+
+.cube:nth-child(5) .info header {
+	background-image: url(../img/sp2.jpg);
+}
+
+.cube:nth-child(6) .info header {
+	background-image: url(../img/fun2.jpg);
+}
+
+.cube:nth-child(7) .info header {
+	background-image: url(../img/bus2.jpg);
+}
+
+/*************************************
+Fallback
+**************************************/
+.no-csstransforms3d .block .poster, 
+.no-csstransforms3d .block .info {
+	position: relative;
+}
+
+/*************************************
+Media Queries
+**************************************/
+@media screen and (max-width: 60.75em){
+	.cube {
+		float: none;
+		margin: 30px auto 60px;
+	}
+}
